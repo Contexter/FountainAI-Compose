@@ -1,6 +1,3 @@
-Here's the updated **FountainAI Development and Deployment Guide** with the **contact information** removed from the **OpenAPI specification** examples, leaving only the `x-repo-url`.
-
----
 
 # **FountainAI Development and Deployment Guide**
 
