@@ -1,3 +1,7 @@
+Here's the updated **FountainAI Development and Deployment Guide** with the **contact information** removed from the **OpenAPI specification** examples, leaving only the `x-repo-url`.
+
+---
+
 # **FountainAI Development and Deployment Guide**
 
 ## Introduction
@@ -16,18 +20,18 @@ The **FountainAI-Compose** repository is dedicated to managing the full-stack de
 
 ## FountainAI Microservices Overview
 
-The following microservices comprise the FountainAI system, with each service hosted in its own GitHub repository:
+The FountainAI system consists of the following microservices, each hosted in its own GitHub repository:
 
-1. **Action Service**
-2. **Character Service**
-3. **Central Sequence Service**
-4. **Core Script Management Service**
-5. **Ensemble Service** (public-facing)
-6. **Paraphrase Service**
-7. **Performer Service**
-8. **Session and Context Service**
-9. **Spoken Word Service**
-10. **Story Factory Service**
+1. [**Ensemble Service**](https://github.com/Contexter/Ensemble-Service) - The main, public-facing service that routes requests to other internal FountainAI services.
+2. [**Story Factory Service**](https://github.com/Contexter/Story-Factory-Service) - Manages the generation and orchestration of story components.
+3. [**Spoken Word Service**](https://github.com/Contexter/Spoken-Word-Service) - Handles processing and generation of spoken lines.
+4. [**Core Script Management Service**](https://github.com/Contexter/Core-Script-Managment-Service) - Manages scripts, scenes, and core narrative structures.
+5. [**Session and Context Service**](https://github.com/Contexter/Session-And-Context-Service) - Manages user sessions and contextual information.
+6. [**Character Service**](https://github.com/Contexter/Character-Service) - Manages character data and attributes within the FountainAI environment.
+7. [**Performer Service**](https://github.com/Contexter/Performer-Service) - Manages performer profiles and assignments to characters.
+8. [**Central Sequence Service**](https://github.com/Contexter/Central-Sequence-Service) - Handles sequencing and chronological data across the FountainAI services.
+9. [**Paraphrase Service**](https://github.com/Contexter/Paraphrase-Service) - Manages paraphrasing and text alternatives.
+10. [**Action Service**](https://github.com/Contexter/Action-Service) - Manages actions associated with characters and narrative events.
 
 ### Key Concepts
 
@@ -111,7 +115,7 @@ services:
   # Public-facing Ensemble Service
   ensemble-service:
     build:
-      context: https://github.com/Contexter/FountainAI-Ensemble-Service.git
+      context: https://github.com/Contexter/Ensemble-Service.git
     ports:
       - "8000:8000"  # Expose Ensemble Service on port 8000
     environment:
@@ -138,71 +142,66 @@ services:
   # Internal Services
   action-service:
     build:
-      context: https://github.com/Contexter/FountainAI-Action-Service.git
+      context: https://github.com/Contexter/Action-Service.git
     expose:
       - "8001"
 
   character-service:
     build:
-      context: https://github.com/Contexter/FountainAI-Character-Service.git
+      context: https://github.com/Contexter/Character-Service.git
     expose:
       - "8002"
 
   central-sequence-service:
     build:
-      context: https://github.com/Contexter/FountainAI-Central-Sequence-Service.git
+      context: https://github.com/Contexter/Central-Sequence-Service.git
     expose:
       - "8003"
 
   core-script-service:
     build:
-      context: https://github.com/Contexter/FountainAI-Core-Script-Service.git
+      context: https://github.com/Contexter/Core-Script-Managment-Service.git
     expose:
       - "8004"
 
   paraphrase-service:
     build:
-      context: https://github.com/Contexter/FountainAI-Paraphrase-Service.git
+      context: https://github.com/Contexter/Paraphrase-Service.git
     expose:
       - "8005"
 
   performer-service:
     build:
-      context: https://github.com/Contexter/FountainAI-Performer-Service.git
+      context: https://github.com/Contexter/Performer-Service.git
     expose:
       - "8006"
 
   session-context-service:
     build:
-      context: https://github.com/Contexter/FountainAI-Session-Context-Service.git
+      context: https://github.com/Contexter/Session-And-Context-Service.git
     expose:
       - "8007"
 
   spoken-word-service:
     build:
-      context: https://github.com/Contexter/FountainAI-Spoken-Word-Service.git
+      context: https://github.com/Contexter/Spoken-Word-Service.git
     expose:
       - "8008"
 
   story-factory-service:
     build:
-      context: https://github.com/Contexter/FountainAI-Story-Factory-Service.git
+      context: https://github.com/Contexter/Story-Factory-Service.git
     expose:
       - "8009"
 ```
-
-### Key Components of the Configuration:
-
-1. **Public-Facing Ensemble Service**: Exposed to `localhost:8000`, acting as the main entry point for external requests.
-2. **Internal Services**: Each service has a unique internal port, only accessible within Docker's internal network.
-3. **Service Interdependencies**: `depends_on` ensures dependent services are started before the Ensemble Service.
-4. **Environment Variables**: Configurable for each service to enable consistent, centralized configuration.
 
 ---
 
 ## 4. OpenAPI Specifications as the Single Source of Truth
 
-To ensure consistency and transparency across all FountainAI services, each microservice's **OpenAPI specification** includes metadata about the service’s repository. This makes the OpenAPI specification the **single source of truth** for the service.
+To ensure consistency and transparency across all FountainAI services, each microservice's **OpenAPI specification** includes metadata about the service’s repository. This makes the OpenAPI specification the **single source of truth** for
+
+ the service.
 
 ### Repository URL in OpenAPI Spec
 
@@ -217,17 +216,11 @@ info:
   description: >
     The FountainAI Action Service manages actions associated with characters and spoken words.
   version: 1.0.0
-  contact:
-    name: FountainAI Team
-    url: https://github.com/Contexter/FountainAI-Action-Service
-    email: support@fountainai.coach
-  x-repo-url: https://github.com/Contexter/FountainAI-Action-Service
+  x-repo-url: https://github.com/Contexter/Action-Service
 ```
 
 By centralizing repository information in the OpenAPI spec:
-- **Developers and
-
- automation tools** can easily access the latest codebase.
+- **Developers and automation tools** can easily access the latest codebase.
 - The OpenAPI spec acts as a single source of truth, ensuring consistency across all resources.
 
 ### Standardizing OpenAPI Metadata Across Services
